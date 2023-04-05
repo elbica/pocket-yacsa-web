@@ -42,7 +42,7 @@ export const ToastContainer = () => {
   return (
     <Portal id="toast-portal">
       <aside
-        className={`px-18 fixed inset-x-0 bottom-32 ${Z_INDEX.toast} m-auto grid w-full max-w-[48rem] place-items-center content-end gap-6`}
+        className={`fixed inset-x-0 bottom-32 px-18 ${Z_INDEX.toast} m-auto grid w-full max-w-[44rem] place-items-center content-end gap-6`}
         ref={ref}
       >
         {toasts.map((toast) => (

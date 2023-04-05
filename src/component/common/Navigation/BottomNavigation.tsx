@@ -17,7 +17,7 @@ const BottomNavigation = () => {
 
   return (
     <nav
-      className={`flex ${Z_INDEX.navigation} fixed bottom-0 w-full max-w-[48rem] bg-white pt-12 shadow-[0_-10px_20px_rgba(0,0,0,0.03)]`}
+      className={`flex ${Z_INDEX.navigation} fixed bottom-0 w-full max-w-[44rem] bg-white pt-12 shadow-[0_-10px_20px_rgba(0,0,0,0.03)]`}
     >
       <BottomNavigationCell
         active={isActive("camera")}
