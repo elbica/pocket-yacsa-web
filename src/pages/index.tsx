@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+import { BottomNavigation } from "@/component/common/Navigation";
+
 export default function Home() {
   return (
     <>
@@ -9,6 +11,8 @@ export default function Home() {
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link href="/favicon.ico" rel="icon" />
       </Head>
+      hello
+      <BottomNavigation />
     </>
   );
 }

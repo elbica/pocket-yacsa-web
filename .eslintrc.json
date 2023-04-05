@@ -81,6 +81,12 @@
       }
     ],
     "@typescript-eslint/no-empty-function": "warn",
+    "import/namespace": [
+      "error",
+      {
+        "allowComputed": true
+      }
+    ],
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "no-constant-condition": ["error", { "checkLoops": false }]
