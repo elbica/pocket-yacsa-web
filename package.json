@@ -1,0 +1,61 @@
+{
+  "name": "pocket-yacsa-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "tsc": "tsc --noEmit",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^4.28.0",
+    "next": "13.2.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-error-boundary": "^4.0.3"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^7.0.0",
+    "@tanstack/react-query-devtools": "^4.29.0",
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.33",
+    "@types/react-dom": "18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "autoprefixer": "^10.4.14",
+    "eslint": "8.37.0",
+    "eslint-config-next": "13.2.4",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.0",
+    "msw": "^1.2.1",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.7",
+    "prettier-plugin-tailwindcss": "^0.2.6",
+    "tailwindcss": "^3.3.1",
+    "typescript": "5.0.3"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "semi": true,
+    "useTabs": false,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "printWidth": 100,
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "endOfLine": "auto",
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
+  }
+}
