@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+import { BottomNavigation } from "@/component/common/Navigation";
+
 export default function Home() {
   return (
     <>
@@ -10,6 +12,7 @@ export default function Home() {
         <link href="/favicon.ico" rel="icon" />
       </Head>
       hello
+      <BottomNavigation />
     </>
   );
 }

@@ -19,4 +19,5 @@ export const TEXT_COLORS = {
   7: "text-ui-light-7 dark:text-ui-dark-7",
   8: "text-ui-light-8 dark:text-ui-dark-8",
   9: "text-ui-light-9 dark:text-ui-dark-9",
+  primary: "text-primary-light-0 dark:text-primary-dark-0",
 };

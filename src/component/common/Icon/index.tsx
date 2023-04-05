@@ -4,7 +4,7 @@ import * as Icons from "./assets";
 
 const colors = {
   black: "[&_*]:stroke-black [&_*]:fill-black",
-  primary: "[&_*]:stroke-primary-light-1 [&_*]:fill-primary-light-1",
+  primary: "[&_*]:stroke-primary-light-0 [&_*]:fill-primary-light-0",
   default: "",
 } as const;
 
