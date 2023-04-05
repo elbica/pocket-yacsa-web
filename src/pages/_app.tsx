@@ -15,6 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
+        <title>포켓약사</title>
         <meta
           content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=yes"
           name="viewport"

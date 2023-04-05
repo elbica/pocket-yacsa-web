@@ -1,4 +1,4 @@
-const PX0_50 = { ...Array.from(Array(51)).map((_, i) => `${i / 10}rem`) };
+const PX0_100 = { ...Array.from(Array(101)).map((_, i) => `${i / 10}rem`) };
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -6,11 +6,11 @@ module.exports = {
   content: ["./src/**/*"],
   theme: {
     extend: {
-      spacing: PX0_50,
-      borderRadius: PX0_50,
-      minWidth: PX0_50,
-      maxWidth: PX0_50,
-      minHeight: PX0_50,
+      spacing: PX0_100,
+      borderRadius: PX0_100,
+      minWidth: PX0_100,
+      maxWidth: PX0_100,
+      minHeight: PX0_100,
       colors: {
         ui: {
           light: {
@@ -56,6 +56,7 @@ module.exports = {
         "28-bold-140": ["2.8rem", { lineHeight: "1.4", fontWeight: 600 }],
         "22-bold-140": ["2.2rem", { lineHeight: "1.4", fontWeight: 600 }],
         "22-medium-140": ["2.2rem", { lineHeight: "1.4", fontWeight: 500 }],
+        "20-medium-140": ["2.0rem", { lineHeight: "1.4", fontWeight: 500 }],
         "18-bold-140": ["1.8rem", { lineHeight: "1.4", fontWeight: 600 }],
         "16-bold-140": ["1.6rem", { lineHeight: "1.4", fontWeight: 600 }],
         "16-regular-140": ["1.6rem", { lineHeight: "1.4", fontWeight: 400 }],
