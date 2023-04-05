@@ -7,13 +7,13 @@ const CameraPage = () => {
     <>
       <div className="flex h-screen flex-col px-20 ">
         <h1 className={`mt-20 py-40 text-22-bold-140 ${TEXT_COLORS[9]}`}>
-          카메라로 알약 사진을 <br />
-          찍어주세요.
+          알약을 찾을 수 없습니다. <br />
+          다시 찍어주세요. 😥
         </h1>
         <button className="flex aspect-square w-full items-center justify-center rounded-8 border-2 border-dashed border-primary-light-0 bg-primary-light-3 dark:bg-ui-dark-2">
           <div className="flex w-fit flex-col items-center gap-2">
             <Icon color="primary" name="camera" />
-            <span className={`text-12-regular-160 ${TEXT_COLORS[7]}`}>
+            <span className={`text-12-regular-160 ${TEXT_COLORS[6]}`}>
               카메라로 사진을 찍어주세요
             </span>
           </div>
