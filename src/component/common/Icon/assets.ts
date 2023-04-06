@@ -1,5 +1,6 @@
 export { default as back } from "/public/icon/back.svg";
 export { default as camera } from "/public/icon/camera.svg";
+export { default as delete } from "/public/icon/delete.svg";
 export { default as google } from "/public/icon/google.svg";
 export { default as logo } from "/public/icon/logo.svg";
 export { default as moon } from "/public/icon/moon.svg";
@@ -9,4 +10,5 @@ export { default as rightArrow } from "/public/icon/rightArrow.svg";
 export { default as search } from "/public/icon/search.svg";
 export { default as searchDelete } from "/public/icon/searchDelete.svg";
 export { default as sharp } from "/public/icon/sharp.svg";
+export { default as smallSearch } from "/public/icon/smallSearch.svg";
 export { default as star } from "/public/icon/star.svg";
