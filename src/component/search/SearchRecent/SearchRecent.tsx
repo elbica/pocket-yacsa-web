@@ -17,7 +17,7 @@ export const SearchRecent = ({ items, onAddItem, onDelete }: Props) => {
   if (items.length === 0) return null;
 
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex flex-col justify-between px-12 py-16">
       {items.map((item) => {
         const { id, value, type } = item;
         return (
@@ -26,7 +26,7 @@ export const SearchRecent = ({ items, onAddItem, onDelete }: Props) => {
             tagName={value}
             endComponent={
               <Icon
-                className="absolute right-6"
+                className="ml-auto"
                 name="delete"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -35,7 +35,7 @@ export const SearchRecent = ({ items, onAddItem, onDelete }: Props) => {
               />
             }
             startComponent={
-              <Icon className="min-w-24" name={isTagType(type) ? "sharp" : "search"} />
+              <Icon height={24} name={isTagType(type) ? "sharp" : "smallSearch"} width={24} />
             }
             onClick={() => {
               onAddItem({ value, type, id });

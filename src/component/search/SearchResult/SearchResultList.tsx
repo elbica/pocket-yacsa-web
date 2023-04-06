@@ -17,7 +17,7 @@ export const SearchResultList = ({ value, onAddItem }: Prop) => {
     return null;
   }
   return (
-    <ul className="absolute w-full bg-white">
+    <ul className="w-full bg-white px-12 py-16">
       {autoCompletedTags?.map((tag) => (
         <li key={tag.tagId}>
           <Link href="#">

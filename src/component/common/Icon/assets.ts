@@ -10,4 +10,5 @@ export { default as rightArrow } from "/public/icon/rightArrow.svg";
 export { default as search } from "/public/icon/search.svg";
 export { default as searchDelete } from "/public/icon/searchDelete.svg";
 export { default as sharp } from "/public/icon/sharp.svg";
+export { default as smallSearch } from "/public/icon/smallSearch.svg";
 export { default as star } from "/public/icon/star.svg";

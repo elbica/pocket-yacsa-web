@@ -30,27 +30,29 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 export const SearchInput = ({ onReset, onSearchByKeyWord, value, ...rest }: Props) => {
   return (
     <form
-      className="relative flex w-full items-center justify-start py-16"
+      className="relative flex w-full items-center justify-start p-8"
       onSubmit={(e) => {
         e.preventDefault();
         onSearchByKeyWord?.();
       }}
     >
       <InputBase
-        className="font-suit text-16-semibold-140 h-56 w-full rounded-30 bg-gray-100 pl-22 pr-65 text-black outline-none placeholder:text-gray-500"
+        className="h-48 w-full rounded-30 bg-gray-100 pl-24 pr-72 text-16-medium-140 text-black outline-none placeholder:text-[#c2c1c9]"
         value={value}
         {...rest}
         endComponents={
           <>
             {value && (
               <Icon
-                className="absolute right-46 cursor-pointer"
+                className="absolute right-54 cursor-pointer"
+                height={24}
                 name="searchDelete"
+                width={24}
                 onClick={onReset}
               />
             )}
-            <button className="absolute right-16">
-              <Icon name="search" stroke="gray-600" />
+            <button className="absolute right-24">
+              <Icon height={24} name="smallSearch" width={24} />
             </button>
           </>
         }

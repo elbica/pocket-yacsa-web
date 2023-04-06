@@ -19,15 +19,15 @@ export default function Home() {
   const debouncedValue = useDebounce(inputProps.value);
 
   return (
-    <>
+    <div className="px-20 pt-16">
       <SearchInput
         {...inputProps}
-        placeholder="당신이 생각한 '그 밈' 검색하기"
+        placeholder="알약을 입력해 주세요."
         spellCheck={false}
         type="text"
         onSearchByKeyWord={onSearchByKeyword}
       />
-      <p className="mb-24 px-14 text-12-regular-160 text-gray-500">밈 제목,태그를 입력하세요</p>
+      <p className="mb-8 ml-23 text-12-regular-160 text-[#c1c2c9]">알약을 검색해 보세요.</p>
       {inputProps.value && (
         <Suspense>
           <SearchResultList value={debouncedValue} onAddItem={onAddItem} />
@@ -36,6 +36,6 @@ export default function Home() {
       {!inputProps.value && (
         <SearchRecent items={items} onAddItem={onAddItem} onDelete={onDeleteItem} />
       )}
-    </>
+    </div>
   );
 }

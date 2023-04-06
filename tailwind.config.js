@@ -59,6 +59,7 @@ module.exports = {
         "20-medium-140": ["2.0rem", { lineHeight: "1.4", fontWeight: 500 }],
         "18-bold-140": ["1.8rem", { lineHeight: "1.4", fontWeight: 600 }],
         "16-bold-140": ["1.6rem", { lineHeight: "1.4", fontWeight: 600 }],
+        "16-medium-140": ["1.6rem", { lineHeight: "1.4", fontWeight: 500 }],
         "16-regular-140": ["1.6rem", { lineHeight: "1.4", fontWeight: 400 }],
         "14-medium-140": ["1.4rem", { lineHeight: "1.4", fontWeight: 500 }],
         "14-bold-140": ["1.4rem", { lineHeight: "1.4", fontWeight: 600 }],
