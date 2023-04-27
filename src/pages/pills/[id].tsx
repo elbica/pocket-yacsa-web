@@ -5,7 +5,7 @@ import React from "react";
 
 import { BottomSheet } from "@/component/common/BottomSheet";
 import { Icon } from "@/component/common/Icon";
-import { TEXT_COLORS } from "@/styles";
+import { BG_COLORS, TEXT_COLORS } from "@/styles";
 
 const FAVORITE_ID = "북마크";
 
@@ -51,9 +51,13 @@ export default function Pill() {
 
           <Root collapsible className="min-w-300 w-full" defaultValue={FAVORITE_ID} type="single">
             <Section icon="💊" title="성분">
-              <span className={`${TEXT_COLORS["8"]} text-14-regular-140`}>
-                밀봉용기, 냉장(2~8℃)보관, 차광보관
-              </span>
+              <div className={`${TEXT_COLORS["7"]} flex flex-wrap gap-8 text-14-regular-140`}>
+                <span className="rounded-20 bg-primary-light-2 px-16 py-8">옥수수전분</span>
+                <span className="rounded-20 bg-primary-light-2 px-16 py-8">미결정셀룰로오스</span>
+                <span className="rounded-20 bg-primary-light-2 px-16 py-8">
+                  밀봉용기밀봉용기밀봉용
+                </span>
+              </div>
             </Section>
             <Section icon="📑" title="저장방법">
               <span className={`${TEXT_COLORS["8"]} text-14-regular-140`}>
