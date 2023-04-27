@@ -5,7 +5,8 @@ import React from "react";
 
 import { BottomSheet } from "@/component/common/BottomSheet";
 import { Icon } from "@/component/common/Icon";
-import { BG_COLORS, TEXT_COLORS } from "@/styles";
+import { useToast } from "@/component/common/Toast";
+import { TEXT_COLORS } from "@/styles";
 
 const FAVORITE_ID = "북마크";
 
@@ -35,9 +36,13 @@ const Section = ({ title, children, icon }: PropsWithChildren<{ title: string; i
 };
 
 export default function Pill() {
+  const { show } = useToast();
+  const handleTogglePill = () => {
+    show("내 서랍에 저장하였습니다");
+  };
   return (
     <>
-      <div className="relative h-[22vh]">
+      <div className="relative h-[32vh]">
         <Image fill alt="알약사진" src="/picture/landing.png" />
       </div>
       <BottomSheet>
@@ -82,8 +87,11 @@ export default function Pill() {
           </Root>
         </BottomSheet.Able>
         <BottomSheet.Bottom>
-          <button className="h-56 w-full rounded-8 bg-primary-light-0 text-16-bold-140 text-white shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
-            내 서랍에 추가하기
+          <button
+            className="h-56 w-full rounded-8 bg-primary-light-0 text-16-bold-140 text-white shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+            onClick={handleTogglePill}
+          >
+            내 서랍에 저장하기
           </button>
           <div className="pointer-events-none fixed bottom-66 left-0 right-0 mx-auto h-40 w-full max-w-[44rem] bg-gradient-to-b from-transparent to-white " />
         </BottomSheet.Bottom>

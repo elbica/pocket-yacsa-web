@@ -31,7 +31,7 @@ function SwipeSectionRoot({
         <section
           {...handlers}
           className={`fixed bottom-0 flex w-full max-w-[44rem] flex-col justify-between rounded-t-24 bg-white px-20 py-12 shadow-[0_1px_20px_rgba(0,0,0,0.1)] transition-[height] ${
-            open ? "h-[98vh] overflow-y-auto" : "h-[80vh]"
+            open ? "h-[98vh] overflow-y-auto" : "h-[70vh]"
           } `}
         >
           {children}
@@ -39,7 +39,7 @@ function SwipeSectionRoot({
       ) : null}
       <div
         className={`pointer-event-none absolute flex w-full items-center justify-center rounded-t-24 bg-white py-8 transition-[top] ${
-          open ? "top-[2vh]" : "top-[20vh]"
+          open ? "top-[2vh]" : "top-[30vh]"
         }`}
       >
         <span className={`left-0 right-0 h-4 w-80 ${BG_COLORS["2"]} m-auto block rounded-13 `} />
