@@ -38,7 +38,7 @@ function SwipeSectionRoot({
         </section>
       ) : null}
       <div
-        className={`absolute flex w-full items-center justify-center rounded-t-24 bg-white py-8 transition-[top] ${
+        className={`pointer-event-none absolute flex w-full items-center justify-center rounded-t-24 bg-white py-8 transition-[top] ${
           open ? "top-[2vh]" : "top-[20vh]"
         }`}
       >
@@ -56,7 +56,7 @@ const Bottom = ({ children }: PropsWithChildren) => {
   return (
     <>
       <div
-        className="fixed bottom-0 left-0 w-full bg-white px-20 pb-10"
+        className="fixed bottom-0 left-0 right-0 mx-auto w-full max-w-[44rem] bg-white px-20 pb-10"
         // className=" absolute bottom-0 left-0 w-full border-t border-t-0 bg-white"
       >
         {children}
