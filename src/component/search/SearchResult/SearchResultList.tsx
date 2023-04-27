@@ -11,7 +11,12 @@ interface Prop {
 
 export const SearchResultList = ({ value, onAddItem }: Prop) => {
   // const { autoCompletedTags } = useGetTagSearch(value.trim());
-  const autoCompletedTags = [{ name: "hello", tagId: 1 }];
+  const autoCompletedTags = [
+    { name: "hello", tagId: 1 },
+    { name: "hello", tagId: 1 },
+    { name: "hello2", tagId: 1 },
+    { name: "hello123", tagId: 1 },
+  ];
 
   if (!value || autoCompletedTags?.length === 0) {
     return null;
