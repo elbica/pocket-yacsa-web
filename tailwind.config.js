@@ -67,6 +67,38 @@ module.exports = {
         "12-medium-160": ["1.2rem", { lineHeight: "1.6", fontWeight: 500 }],
         "12-regular-160": ["1.2rem", { lineHeight: "1.6", fontWeight: 400 }],
       },
+      keyframes: {
+        slideDown: {
+          "0%": { height: 0 },
+          "100%": { height: "var(--radix-accordion-content-height)" },
+        },
+        slideUp: {
+          "0%": { height: "var(--radix-accordion-content-height)" },
+          "100%": { height: 0 },
+        },
+        enter: {
+          "0%": {
+            transform: "translate3d(0,200%,0)",
+            opacity: "0.5",
+          },
+          "100%": {
+            transform: "translate3d(0,0,0)",
+            opacity: "1",
+          },
+        },
+        exit: {
+          "100%": {
+            transform: "translate3d(0,200%,0)",
+            opacity: "0",
+          },
+        },
+      },
+      animation: {
+        "slide-down": "slideDown 300ms cubic-bezier(0.87,0,0.13,1)",
+        "slide-up": "slideUp 300ms cubic-bezier(0.87,0,0.13,1)",
+        enter: "enter 300ms cubic-bezier(.21,1.02,.73,1) forwards",
+        exit: "exit 300ms cubic-bezier(.21,1.02,.73,1) forwards",
+      },
     },
   },
   plugins: [],
