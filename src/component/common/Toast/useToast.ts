@@ -4,8 +4,8 @@ import { useSetToastContext } from "@/component/common/Toast/context";
 import type { Toast, ToastOption, ToastType } from "@/component/common/Toast/types";
 import { delay } from "@/util/delay";
 
-const DEFAULT_TOAST_DELAY = 800;
-const ANIMATION_EXPIRE_DELAY = 50;
+const DEFAULT_TOAST_DELAY = 1000;
+const ANIMATION_EXPIRE_DELAY = 0;
 
 const toastFactory = (type: ToastType, message: Toast["message"], option?: ToastOption): Toast => ({
   type,
