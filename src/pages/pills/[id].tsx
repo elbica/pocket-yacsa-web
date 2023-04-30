@@ -5,6 +5,7 @@ import React from "react";
 
 import { BottomSheet } from "@/component/common/BottomSheet";
 import { Icon } from "@/component/common/Icon";
+import { BackButton } from "@/component/common/Navigation";
 import { useToast } from "@/component/common/Toast";
 import { TEXT_COLORS } from "@/styles";
 
@@ -45,6 +46,8 @@ export default function Pill() {
       <div className="relative h-[32vh]">
         <Image fill alt="알약사진" src="/picture/landing.png" />
       </div>
+
+      <BackButton className="absolute left-24 top-24" />
       <BottomSheet>
         <BottomSheet.Able>
           <BottomSheet.Title company="한국얀센" english="Tylenol Tab.160mg" type="전문의약품">
