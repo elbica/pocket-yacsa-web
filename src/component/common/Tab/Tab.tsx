@@ -28,9 +28,8 @@ function TabRoot({ children, className }: PropsWithChildren<{ className?: string
 
 const Panel = ({ children }: TabRootProps) => {
   const [currentIdx] = useContext(TabContext);
-  console.log({ currentIdx, children });
   return (
-    <section className="relative mt-43 grow overflow-y-hidden">
+    <section className="relative w-full grow overflow-y-hidden">
       {Children.map(children, (child, e) => {
         return e === currentIdx
           ? child
@@ -51,28 +50,24 @@ const Group = ({
   const [currentIdx] = useContext(TabContext);
 
   return (
-    <div className="relative w-full grow-0">
-      <section
-        className={`${
-          start ? "align-start" : "aling-center"
-        } border-ui-light-07 riight-0 absolute left-0 border-b bg-white `}
-      >
-        {Children.map(children, (child, e) => {
-          return isValidElement(child)
-            ? e === currentIdx
-              ? cloneElement(child, {
-                  className: TEXT_COLORS["8"],
+    <section
+      className={`${start ? "align-start" : "align-center"} border-ui-light-07 border-b bg-white `}
+    >
+      {Children.map(children, (child, e) => {
+        return isValidElement(child)
+          ? e === currentIdx
+            ? cloneElement(child, {
+                className: TEXT_COLORS["8"],
 
-                  idx: e,
-                })
-              : cloneElement(child, {
-                  idx: e,
-                })
-            : null;
-        })}
-        {decorator}
-      </section>
-    </div>
+                idx: e,
+              })
+            : cloneElement(child, {
+                idx: e,
+              })
+          : null;
+      })}
+      {decorator}
+    </section>
   );
 };
 
