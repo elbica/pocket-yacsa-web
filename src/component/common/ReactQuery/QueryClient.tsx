@@ -19,7 +19,7 @@ export const QueryClientProvider = ({ hydrateState, children }: Props) => {
       new QueryClient({
         defaultOptions: {
           queries: {
-            suspense: true,
+            // suspense: true,
             retry: 0,
             refetchOnWindowFocus: false,
             useErrorBoundary: false,
