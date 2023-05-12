@@ -51,7 +51,14 @@ const ProfilePage = () => {
         </ul>
         <div className="ml-auto flex w-fit gap-12 px-8 py-10 text-14-regular-140">
           <button className={`${TEXT_COLORS[5]}`}>회원탈퇴</button>
-          <button className={`${TEXT_COLORS[7]} underline`}>로그아웃</button>
+          <button
+            className={`${TEXT_COLORS[7]} underline`}
+            onClick={() => {
+              window.location.href = "https://pocketyacsa.shop/logout";
+            }}
+          >
+            로그아웃
+          </button>
         </div>
       </div>
       <BottomNavigation />
