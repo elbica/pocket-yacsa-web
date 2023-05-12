@@ -21,6 +21,7 @@
     "react-swipeable": "^7.0.0"
   },
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.6.0",
     "@svgr/webpack": "^7.0.0",
     "@tanstack/react-query-devtools": "^4.29.0",
     "@types/node": "18.15.11",
