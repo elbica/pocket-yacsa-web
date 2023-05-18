@@ -22,13 +22,13 @@ export const SearchResultList = ({ value, onAddItem }: Prop) => {
     return null;
   }
   return (
-    <ul className="w-full bg-white px-12 py-16">
+    <ul className="w-full px-12 py-16">
       {autoCompletedTags?.map((tag) => (
         <li key={tag.tagId}>
           <Link href="#">
             <SearchItem
               searchText={value}
-              startComponent={<Icon name="sharp" />}
+              startComponent={<Icon color="black" name="sharp" />}
               tagName={tag.name}
               onClick={() => {
                 onAddItem({ value: tag.name, type: "tag", id: tag.tagId });

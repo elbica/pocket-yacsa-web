@@ -26,7 +26,8 @@ export const SearchRecent = ({ items, onAddItem, onDelete }: Props) => {
             tagName={value}
             endComponent={
               <Icon
-                className="ml-auto"
+                className="ml-auto min-w-24"
+                color="black"
                 name="delete"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -35,7 +36,13 @@ export const SearchRecent = ({ items, onAddItem, onDelete }: Props) => {
               />
             }
             startComponent={
-              <Icon height={24} name={isTagType(type) ? "sharp" : "smallSearch"} width={24} />
+              <Icon
+                className="min-w-24"
+                color="black"
+                height={24}
+                name={isTagType(type) ? "sharp" : "smallSearch"}
+                width={24}
+              />
             }
             onClick={() => {
               onAddItem({ value, type, id });

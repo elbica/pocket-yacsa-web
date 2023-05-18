@@ -3,7 +3,7 @@ import type { FC, SVGProps } from "react";
 import * as Icons from "./assets";
 
 const colors = {
-  black: "[&_*]:stroke-black [&_*]:fill-black",
+  black: "[&_*]:stroke-black  dark:[&_*]:stroke-[#c2c2c2] ",
   primary: "[&_*]:stroke-primary-light-0 [&_*]:fill-primary-light-0",
   default: "",
 } as const;
