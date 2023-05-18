@@ -25,7 +25,6 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (localStorage.getItem("pocket-dark-mode") === "true") {
-      document.documentElement.classList.add("dark");
       setDefaultDarkMode(true);
     }
   }, []);

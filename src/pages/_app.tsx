@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { useEffect } from "react";
 
 import { Layout } from "@/component/common/Layout";
 import { QueryClientProvider, QueryErrorBoundary } from "@/component/common/ReactQuery";
@@ -12,6 +13,11 @@ if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
 }
 
 export default function App({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    if (localStorage.getItem("pocket-dark-mode") === "true") {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
   return (
     <>
       <Head>
