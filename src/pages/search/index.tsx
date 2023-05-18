@@ -1,12 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { Suspense, useState } from "react";
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 
 import { BottomNavigation } from "@/component/common/Navigation";
+import { InfiniteList } from "@/component/result";
 import { SearchInput } from "@/component/search/SearchInput";
 import { SearchRecent } from "@/component/search/SearchRecent";
 import { SearchResultList } from "@/component/search/SearchResult";
 import { useDebounce, useInput } from "@/hooks/common";
+import type { MedicineSearchPageRes } from "@/models";
 import { api } from "@/util/axios";
 
 interface RecentSearch {
@@ -15,19 +16,30 @@ interface RecentSearch {
 }
 export default function Home() {
   const inputProps = useInput();
+  const queryClient = useQueryClient();
+
   const [isSearchMedicine, setIsSearchMedicine] = useState(false);
   const { data: items } = useQuery(["recentSearch"], () =>
     api.get<RecentSearch[]>("/medicines/search/logs"),
   );
+  const { mutate } = useMutation((name: string) => api.post(`/medicines/search/logs?name=${name}`));
 
   const handleSearchItem = (value: string) => {
     inputProps.setValue(value);
-    setIsSearchMedicine(true);
+    if (value) {
+      setIsSearchMedicine(true);
+
+      if (!items?.filter((item) => item.name === value).length)
+        mutate(value, {
+          onSuccess: () => {
+            queryClient.invalidateQueries(["recentSearch"]);
+          },
+        });
+    }
   };
 
   const onSearchByKeyword = () => {
     if (!inputProps.value || !inputProps.value.trim()) return;
-
     handleSearchItem(inputProps.value);
   };
   const debouncedValue = useDebounce(inputProps.value);
@@ -41,6 +53,10 @@ export default function Home() {
           spellCheck={false}
           type="text"
           onSearchByKeyWord={onSearchByKeyword}
+          onChange={(e) => {
+            inputProps.onChange(e);
+            setIsSearchMedicine(false);
+          }}
           onReset={() => {
             inputProps.onReset();
             setIsSearchMedicine(false);
@@ -50,10 +66,30 @@ export default function Home() {
         {inputProps.value && !isSearchMedicine && (
           <SearchResultList value={debouncedValue.trim()} onClick={handleSearchItem} />
         )}
-        {inputProps.value && isSearchMedicine && <div>hello</div>}
+        {inputProps.value && isSearchMedicine && <SearchInfiniteResult value={inputProps.value} />}
         {!inputProps.value && <SearchRecent items={items || []} onClick={handleSearchItem} />}
       </div>
       <BottomNavigation />
     </>
   );
 }
+
+const SearchInfiniteResult = ({ value }: { value: string }) => {
+  const { data, fetchNextPage } = useInfiniteQuery(
+    ["searchMedicine", value],
+    ({ pageParam = 0 }) =>
+      api.get<MedicineSearchPageRes>(`/medicines/search/page?name=${value}&page=${pageParam + 1}`),
+    {
+      getNextPageParam: (lastPage) => {
+        return lastPage.lastPage ? undefined : lastPage.page;
+      },
+    },
+  );
+  const infiniteResultItems = data?.pages.flatMap((page) => page.medicineSearchList) || [];
+
+  return (
+    <>
+      <InfiniteList items={infiniteResultItems} onRequestAppend={() => fetchNextPage()} />
+    </>
+  );
+};

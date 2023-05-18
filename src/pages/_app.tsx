@@ -8,10 +8,6 @@ import { Layout } from "@/component/common/Layout";
 import { QueryClientProvider, QueryErrorBoundary } from "@/component/common/ReactQuery";
 import { ToastContainer, ToastProvider } from "@/component/common/Toast";
 
-if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-  await import("../../mocks");
-}
-
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (localStorage.getItem("pocket-dark-mode") === "true") {
