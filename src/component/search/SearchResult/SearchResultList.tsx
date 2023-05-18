@@ -1,22 +1,21 @@
-import Link from "next/link";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { Icon } from "@/component/common/Icon";
 import { SearchItem } from "@/component/search/SearchItem";
-import type { RecentSearch } from "@/hooks/common";
+import { api } from "@/util/axios";
 
 interface Prop {
   value: string;
-  onAddItem: ({ value, type, id }: RecentSearch) => void;
+  onClick: (name: string) => void;
 }
 
-export const SearchResultList = ({ value, onAddItem }: Prop) => {
-  // const { autoCompletedTags } = useGetTagSearch(value.trim());
-  const autoCompletedTags = [
-    { name: "hello", tagId: 1 },
-    { name: "hello", tagId: 1 },
-    { name: "hello2", tagId: 1 },
-    { name: "hello123", tagId: 1 },
-  ];
+export const SearchResultList = ({ value, onClick }: Prop) => {
+  const { data: autoCompletedTags } = useQuery(
+    ["relatedSearch", value],
+    () => api.get<string[]>(`/medicines/search/related?name=${value}`),
+    { enabled: !!value },
+  );
+  const { mutate } = useMutation((name: string) => api.post(`/medicines/search/logs?name=${name}`));
 
   if (!value || autoCompletedTags?.length === 0) {
     return null;
@@ -24,17 +23,16 @@ export const SearchResultList = ({ value, onAddItem }: Prop) => {
   return (
     <ul className="w-full px-12 py-16">
       {autoCompletedTags?.map((tag) => (
-        <li key={tag.tagId}>
-          <Link href="#">
-            <SearchItem
-              searchText={value}
-              startComponent={<Icon color="black" name="sharp" />}
-              tagName={tag.name}
-              onClick={() => {
-                onAddItem({ value: tag.name, type: "tag", id: tag.tagId });
-              }}
-            />
-          </Link>
+        <li key={tag}>
+          <SearchItem
+            searchText={value}
+            startComponent={<Icon className="min-w-24" color="black" name="smallSearch" />}
+            tagName={tag}
+            onClick={() => {
+              mutate(tag);
+              onClick(tag);
+            }}
+          />
         </li>
       ))}
     </ul>

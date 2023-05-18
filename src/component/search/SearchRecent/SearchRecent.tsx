@@ -1,29 +1,40 @@
-import { useRouter } from "next/router";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Icon } from "@/component/common/Icon";
-import type { RecentSearch } from "@/hooks/common";
-import { isTagType } from "@/hooks/common";
+import { api } from "@/util/axios";
 
 import { SearchItem } from "../SearchItem";
 
+interface RecentSearch {
+  name: string;
+  createdAt: string;
+}
 interface Props {
   items: RecentSearch[];
-  onAddItem: ({ value, type, id }: RecentSearch) => void;
-  onDelete: (id: RecentSearch["id"]) => void;
+  onClick: (value: string) => void;
 }
 
-export const SearchRecent = ({ items, onAddItem, onDelete }: Props) => {
-  const router = useRouter();
+export const SearchRecent = ({ items, onClick }: Props) => {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation(
+    ({ name, createdAt }: RecentSearch) =>
+      api.delete(`/medicines/search/logs?name=${name}&createdAt=${createdAt}`),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["recentSearch"]);
+      },
+    },
+  );
   if (items.length === 0) return null;
 
   return (
     <div className="flex flex-col justify-between px-12 py-16">
       {items.map((item) => {
-        const { id, value, type } = item;
+        const { name, createdAt } = item;
         return (
           <SearchItem
-            key={id}
-            tagName={value}
+            key={name}
+            tagName={name}
             endComponent={
               <Icon
                 className="ml-auto min-w-24"
@@ -31,21 +42,16 @@ export const SearchRecent = ({ items, onAddItem, onDelete }: Props) => {
                 name="delete"
                 onClick={(e) => {
                   e.stopPropagation();
-                  onDelete(id);
+                  mutate({ name, createdAt });
+                  // onDelete(id);
                 }}
               />
             }
             startComponent={
-              <Icon
-                className="min-w-24"
-                color="black"
-                height={24}
-                name={isTagType(type) ? "sharp" : "smallSearch"}
-                width={24}
-              />
+              <Icon className="min-w-24" color="black" height={24} name="smallSearch" width={24} />
             }
             onClick={() => {
-              onAddItem({ value, type, id });
+              onClick(name);
             }}
             onMouseDown={(e) => {
               // Prevent input blur

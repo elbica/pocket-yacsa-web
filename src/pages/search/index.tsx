@@ -1,21 +1,34 @@
+import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 
 import { BottomNavigation } from "@/component/common/Navigation";
 import { SearchInput } from "@/component/search/SearchInput";
 import { SearchRecent } from "@/component/search/SearchRecent";
 import { SearchResultList } from "@/component/search/SearchResult";
-import { useDebounce, useInput, useRecentSearch } from "@/hooks/common";
+import { useDebounce, useInput } from "@/hooks/common";
+import { api } from "@/util/axios";
 
+interface RecentSearch {
+  name: string;
+  createdAt: string;
+}
 export default function Home() {
   const inputProps = useInput();
-  const { items, onDeleteItem, onAddItem } = useRecentSearch();
-  const router = useRouter();
+  const [isSearchMedicine, setIsSearchMedicine] = useState(false);
+  const { data: items } = useQuery(["recentSearch"], () =>
+    api.get<RecentSearch[]>("/medicines/search/logs"),
+  );
+
+  const handleSearchItem = (value: string) => {
+    inputProps.setValue(value);
+    setIsSearchMedicine(true);
+  };
 
   const onSearchByKeyword = () => {
     if (!inputProps.value || !inputProps.value.trim()) return;
 
-    onAddItem({ value: inputProps.value, type: "keyword", id: Date.now() });
+    handleSearchItem(inputProps.value);
   };
   const debouncedValue = useDebounce(inputProps.value);
 
@@ -28,16 +41,17 @@ export default function Home() {
           spellCheck={false}
           type="text"
           onSearchByKeyWord={onSearchByKeyword}
+          onReset={() => {
+            inputProps.onReset();
+            setIsSearchMedicine(false);
+          }}
         />
         <p className="mb-8 ml-23 text-12-regular-160 text-[#c1c2c9]">알약을 검색해 보세요.</p>
-        {inputProps.value && (
-          <Suspense>
-            <SearchResultList value={debouncedValue} onAddItem={onAddItem} />
-          </Suspense>
+        {inputProps.value && !isSearchMedicine && (
+          <SearchResultList value={debouncedValue.trim()} onClick={handleSearchItem} />
         )}
-        {!inputProps.value && (
-          <SearchRecent items={items} onAddItem={onAddItem} onDelete={onDeleteItem} />
-        )}
+        {inputProps.value && isSearchMedicine && <div>hello</div>}
+        {!inputProps.value && <SearchRecent items={items || []} onClick={handleSearchItem} />}
       </div>
       <BottomNavigation />
     </>
