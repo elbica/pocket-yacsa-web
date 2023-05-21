@@ -7,8 +7,6 @@ export const useIntersect = (onIntersect: IntersectHandler, options?: Intersecti
   const callback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        console.log("??");
-        console.log(onIntersect);
         setTimeout(() => {
           onIntersect(entry, observer);
         }, 200);

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Icon } from "@/component/common/Icon";
@@ -43,7 +44,7 @@ const ProfilePage = () => {
             <b className={`font-bold ${TEXT_COLORS[9]}`}>{data?.memberName ?? "OOO"}님</b>{" "}
             안녕하세요!
           </h1>
-          <div className="flex justify-center pt-24">
+          <Link className="block flex justify-center pt-24" href="/profile/favorite">
             <div className="flex w-[12rem] flex-col items-center gap-4 border-r border-[#eaebf1] pr-20 dark:border-ui-dark-3">
               <b className={`text-[3.2rem] font-bold leading-[4.4rem] ${TEXT_COLORS[9]}`}>
                 {data?.detectionLogCount ?? "--"}
@@ -56,7 +57,7 @@ const ProfilePage = () => {
               </b>
               <span className={`${TEXT_COLORS[7]} text-16-regular-140`}>내 서랍</span>
             </div>
-          </div>
+          </Link>
         </section>
         <ul className="rounded-8 bg-primary-light-3 px-16 py-8 dark:bg-ui-dark-2">
           <li className="flex h-56 w-full items-center justify-between border-b border-primary-light-2 px-4 py-8">

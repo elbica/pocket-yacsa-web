@@ -50,9 +50,7 @@ const Group = ({
   const [currentIdx] = useContext(TabContext);
 
   return (
-    <section
-      className={`${start ? "align-start" : "align-center"} border-ui-light-07 border-b bg-white `}
-    >
+    <section className={`${start ? "align-start" : "align-center"} border-ui-light-07 border-b `}>
       {Children.map(children, (child, e) => {
         return isValidElement(child)
           ? e === currentIdx
@@ -77,7 +75,7 @@ const Label = ({ children, idx, className: style, onClick, ...rest }: TabElement
   return (
     <button
       {...rest}
-      className={`p-10 ${style && "border-b-2 border-black"}`}
+      className={`p-10 ${style && "border-b-2 border-black dark:border-white"}`}
       onClick={(e) => {
         setIdx(idx);
         onClick?.(e);

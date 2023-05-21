@@ -24,4 +24,13 @@ export const api: CustomInstance = axios.create({
   baseURL: "https://pocketyacsa.shop",
   withCredentials: true,
 });
-api.interceptors.response.use((data) => data.data);
+api.interceptors.response.use(
+  (data) => data.data,
+  (err) => {
+    if (!axios.isAxiosError(err)) throw new Error("not axios err");
+    if (err.response?.status === 401) {
+      window.location.href = "/";
+    }
+    return Promise.reject(err);
+  },
+);

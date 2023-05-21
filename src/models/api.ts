@@ -74,7 +74,7 @@ export interface DetectionLogPageRes {
    * @type {Array<DetectionLogRes>}
    * @memberof DetectionLogPageRes
    */
-  detectionLogs?: Array<DetectionLogRes>;
+  detectionLogs: Array<DetectionLogRes>;
 }
 
 export const DetectionLogPageResLastPageEnum = {
@@ -96,37 +96,37 @@ export interface DetectionLogRes {
    * @type {number}
    * @memberof DetectionLogRes
    */
-  id?: number;
+  id: number;
   /**
    * 의약품의 id
    * @type {number}
    * @memberof DetectionLogRes
    */
-  medicineId?: number;
+  medicineId: number;
   /**
    * 의약품 이름
    * @type {string}
    * @memberof DetectionLogRes
    */
-  medicineName?: string;
+  medicineName: string;
   /**
    * 제약회사 이름
    * @type {string}
    * @memberof DetectionLogRes
    */
-  medicineCompany?: string;
+  medicineCompany: string;
   /**
    * 의약품 이미지 주소
    * @type {string}
    * @memberof DetectionLogRes
    */
-  medicineImage?: string;
+  medicineImage: string;
   /**
    * 즐겨찾기 추가 시간
    * @type {string}
    * @memberof DetectionLogRes
    */
-  createdAt?: string;
+  createdAt: string;
 }
 /**
  *
@@ -169,7 +169,7 @@ export interface FavoritePageRes {
    * @type {Array<FavoriteRes>}
    * @memberof FavoritePageRes
    */
-  favorites?: Array<FavoriteRes>;
+  favorites: Array<FavoriteRes>;
 }
 
 export const FavoritePageResLastPageEnum = {
@@ -191,37 +191,37 @@ export interface FavoriteRes {
    * @type {number}
    * @memberof FavoriteRes
    */
-  id?: number;
+  id: number;
   /**
    * 의약품의 id
    * @type {number}
    * @memberof FavoriteRes
    */
-  medicineId?: number;
+  medicineId: number;
   /**
    * 의약품 이름
    * @type {string}
    * @memberof FavoriteRes
    */
-  medicineName?: string;
+  medicineName: string;
   /**
    * 제약회사 이름
    * @type {string}
    * @memberof FavoriteRes
    */
-  medicineCompany?: string;
+  medicineCompany: string;
   /**
    * 의약품 이미지 주소
    * @type {string}
    * @memberof FavoriteRes
    */
-  medicineImage?: string;
+  medicineImage: string;
   /**
    * 즐겨찾기 추가 시간
    * @type {string}
    * @memberof FavoriteRes
    */
-  createdAt?: string;
+  createdAt: string;
 }
 /**
  *

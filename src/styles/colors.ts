@@ -10,7 +10,7 @@ export const BG_COLORS = {
   9: "bg-ui-light-9 dark:bg-ui-dark-9",
   primary0: "bg-primary-light-0",
   primary2: "bg-primary-light-2",
-  primary3: "bg-primary-light-3",
+  primary3: "bg-primary-light-3 dark:bg-ui-dark-2",
 };
 export const TEXT_COLORS = {
   1: "text-ui-light-1 dark:text-ui-dark-1",
