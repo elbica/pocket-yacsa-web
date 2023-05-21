@@ -17,11 +17,14 @@ const Section = ({ title, children, icon }: PropsWithChildren<{ title: string; i
       <Header>
         <Trigger className="flex w-full items-center justify-between gap-8 rounded-full py-12 text-16-bold-140 [&>span>#chevronDown]:data-[state=open]:rotate-180">
           <span className="pr-4 text-18-bold-140">{icon}</span>
-          <span className="flex-grow text-left text-18-bold-140">{title}</span>
-          <span className="flex h-40 w-40 items-center justify-center rounded-full hover:bg-gray-100">
+          <span className={`${TEXT_COLORS["9"]} flex-grow text-left text-18-bold-140`}>
+            {title}
+          </span>
+          <span className="flex h-40 w-40 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-ui-dark-2">
             <Icon
               aria-hidden
               className="transition-transform duration-300 ease-[cubic-bezier(0.87,0,0.13,1)]"
+              color="black"
               id="chevronDown"
               name="chevronDown"
             />
@@ -59,10 +62,14 @@ export default function Pill() {
 
           <Root collapsible className="min-w-300 w-full" defaultValue={FAVORITE_ID} type="single">
             <Section icon="💊" title="성분">
-              <div className={`${TEXT_COLORS["7"]} flex flex-wrap gap-8 text-14-regular-140`}>
-                <span className="rounded-20 bg-primary-light-2 px-16 py-8">옥수수전분</span>
-                <span className="rounded-20 bg-primary-light-2 px-16 py-8">미결정셀룰로오스</span>
-                <span className="rounded-20 bg-primary-light-2 px-16 py-8">
+              <div className={`${TEXT_COLORS["8"]} flex flex-wrap gap-8 text-14-regular-140`}>
+                <span className="rounded-20 bg-primary-light-2 px-16 py-8 dark:bg-ui-dark-3">
+                  옥수수전분
+                </span>
+                <span className="rounded-20 bg-primary-light-2 px-16 py-8 dark:bg-ui-dark-3">
+                  미결정셀룰로오스
+                </span>
+                <span className="rounded-20 bg-primary-light-2 px-16 py-8 dark:bg-ui-dark-3">
                   밀봉용기밀봉용기밀봉용
                 </span>
               </div>
@@ -96,7 +103,7 @@ export default function Pill() {
           >
             내 서랍에 저장하기
           </button>
-          <div className="pointer-events-none fixed bottom-66 left-0 right-0 mx-auto h-40 w-full max-w-[44rem] bg-gradient-to-b from-transparent to-white " />
+          <div className="pointer-events-none fixed bottom-66 left-0 right-0 mx-auto h-40 w-full max-w-[44rem] bg-gradient-to-b from-transparent to-white dark:to-ui-dark-1" />
         </BottomSheet.Bottom>
       </BottomSheet>
     </>

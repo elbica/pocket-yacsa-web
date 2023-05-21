@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import type { PropsWithChildren } from "react";
-import React, { ComponentProps, useState } from "react";
+import React, { useState } from "react";
 
 import { BackButton, BottomNavigation } from "@/component/common/Navigation";
 import { Tab } from "@/component/common/Tab";
