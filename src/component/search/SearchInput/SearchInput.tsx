@@ -37,7 +37,7 @@ export const SearchInput = ({ onReset, onSearchByKeyWord, value, ...rest }: Prop
       }}
     >
       <InputBase
-        className="h-48 w-full rounded-30 bg-gray-100 pl-24 pr-72 text-16-medium-140 text-black outline-none placeholder:text-[#c2c1c9]"
+        className="h-48 w-full rounded-30 bg-gray-100 pl-24 pr-72 text-16-medium-140 text-black outline-none placeholder:text-[#c2c1c9] dark:bg-ui-dark-2 dark:text-white"
         value={value}
         {...rest}
         endComponents={
@@ -45,6 +45,7 @@ export const SearchInput = ({ onReset, onSearchByKeyWord, value, ...rest }: Prop
             {value && (
               <Icon
                 className="absolute right-54 cursor-pointer"
+                color="black"
                 height={24}
                 name="searchDelete"
                 width={24}
@@ -52,7 +53,7 @@ export const SearchInput = ({ onReset, onSearchByKeyWord, value, ...rest }: Prop
               />
             )}
             <button className="absolute right-24">
-              <Icon height={24} name="smallSearch" width={24} />
+              <Icon color="black" height={24} name="smallSearch" width={24} />
             </button>
           </>
         }

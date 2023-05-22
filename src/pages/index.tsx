@@ -18,7 +18,12 @@ export default function Home() {
           </span>
         </div>
 
-        <button className="flex h-56 w-full items-center justify-center gap-8 rounded-8 bg-white px-14 shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
+        <button
+          className="flex h-56 w-full items-center justify-center gap-8 rounded-8 bg-white px-14 shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+          onClick={() => {
+            window.location.href = "https://pocketyacsa.shop/oauth2/login/google";
+          }}
+        >
           <Icon name="google" />
           <span className="text-16-bold-140 text-ui-dark-1 ">Google로 시작하기</span>
         </button>
