@@ -110,14 +110,30 @@ export default function Pill() {
     if (data.favorite) {
       deleteMutation.mutate(data.id, {
         onSuccess: () => {
-          queryClient.invalidateQueries(["medicines", id]);
+          queryClient.invalidateQueries(["favorites"]);
+          queryClient.invalidateQueries(["detection-logs"]);
+
+          queryClient.setQueryData<MedicineRes>(["medicines", id], (data) => {
+            const newData = structuredClone(data);
+            if (!newData || !data) return data;
+            newData.favorite = !data?.favorite;
+            return newData;
+          });
           show("내 서랍에서 삭제하였습니다");
         },
       });
     } else {
       addMutation.mutate(data.id, {
         onSuccess: () => {
-          queryClient.invalidateQueries(["medicines", id]);
+          queryClient.invalidateQueries(["favorites"]);
+          queryClient.invalidateQueries(["detection-logs"]);
+
+          queryClient.setQueryData<MedicineRes>(["medicines", id], (data) => {
+            const newData = structuredClone(data);
+            if (!newData || !data) return data;
+            newData.favorite = !data?.favorite;
+            return newData;
+          });
           show("내 서랍에 저장하였습니다");
         },
       });
@@ -144,9 +160,11 @@ export default function Pill() {
             defaultValue={FAVORITE_ID}
             type="single"
           >
-            <Section icon="🏥" title="효능﹒효과">
-              <span className={`${TEXT_COLORS["8"]} text-14-regular-140`}>{data.effect}</span>
-            </Section>
+            {data.effect && (
+              <Section icon="🏥" title="효능﹒효과">
+                <span className={`${TEXT_COLORS["8"]} text-14-regular-140`}>{data.effect}</span>
+              </Section>
+            )}
             <Section icon="💊" title="성분">
               <div className={`${TEXT_COLORS["8"]} flex flex-wrap gap-8 text-14-regular-140`}>
                 {data.ingredient.map((ingre) => (

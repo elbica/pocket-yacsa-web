@@ -101,7 +101,7 @@ const FavoriteList = (props: PropsWithChildren<{ isDeleteMode: boolean }>) => {
         if (!newData) return data;
         newData.pages = newData?.pages.map((page) => ({
           ...page,
-          favorites: page.favorites.filter((d) => d.id !== variables),
+          favorites: page.favorites.filter((d) => d.medicineId !== variables),
         }));
 
         if (newData.pages[0].total) newData.pages[0].total--;
@@ -181,12 +181,13 @@ const HistoryList = (props: PropsWithChildren<{ isDeleteMode: boolean }>) => {
   const infiniteResultItems =
     data?.pages.flatMap((page) =>
       page.detectionLogs.map((logs) => ({
-        id: logs.id,
+        id: logs.medicineId,
         company: logs.medicineCompany,
         image: logs.medicineImage,
         name: logs.medicineName,
         isDelete: props.isDeleteMode,
-        onDelete: deleteMutation.mutate,
+        favorite: logs.favorite,
+        onDelete: () => deleteMutation.mutate(logs.id),
         date: logs.createdAt.split("T")[0].replaceAll("-", "."),
       })),
     ) || [];

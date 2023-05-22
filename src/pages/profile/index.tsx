@@ -49,21 +49,21 @@ const ProfilePage = () => {
               <b className={`text-[3.2rem] font-bold leading-[4.4rem] ${TEXT_COLORS[9]}`}>
                 {data?.detectionLogCount ?? "--"}
               </b>
-              <span className={`${TEXT_COLORS[7]} text-16-regular-140`}>촬영기록</span>
+              <span className={`${TEXT_COLORS[8]} text-16-regular-140`}>촬영기록</span>
             </div>
             <div className="flex w-[12rem] flex-col items-center gap-4 pl-20">
               <b className={`text-[3.2rem] font-bold leading-[4.4rem] ${TEXT_COLORS[9]}`}>
                 {data?.favoriteCount ?? "--"}
               </b>
-              <span className={`${TEXT_COLORS[7]} text-16-regular-140`}>내 서랍</span>
+              <span className={`${TEXT_COLORS[8]} text-16-regular-140`}>내 서랍</span>
             </div>
           </Link>
         </section>
         <ul className="rounded-8 bg-primary-light-3 px-16 py-8 dark:bg-ui-dark-2">
           <li className="flex h-56 w-full items-center justify-between border-b border-primary-light-2 px-4 py-8">
             <div className="flex items-center gap-8">
-              <Icon name="moon" />
-              <span className={`${TEXT_COLORS[7]} text-16-regular-140`}>다크모드</span>
+              <Icon className="dark:[&_*]:fill-gray-100" name="moon" />
+              <span className={`${TEXT_COLORS[8]} text-16-regular-140`}>다크모드</span>
             </div>
             <Switch
               defaultChecked={defaultDarkMode}
@@ -73,18 +73,18 @@ const ProfilePage = () => {
           </li>
           <li className="flex h-56 w-full items-center justify-between px-4 py-8">
             <div className="flex items-center gap-8">
-              <Icon name="post" />
+              <Icon className="dark:[&_*]:stroke-gray-100" name="post" />
               <button>
-                <span className={`${TEXT_COLORS[7]} text-16-regular-140`}>이용약관</span>
+                <span className={`${TEXT_COLORS[8]} text-16-regular-140`}>이용약관</span>
               </button>
             </div>
-            <Icon name="rightArrow" />
+            <Icon className="dark:[&_*]:fill-gray-100" name="rightArrow" />
           </li>
         </ul>
         <div className="ml-auto flex w-fit gap-12 px-8 py-10 text-14-regular-140">
-          <button className={`${TEXT_COLORS[5]}`}>회원탈퇴</button>
+          <button className={`${TEXT_COLORS[6]}`}>회원탈퇴</button>
           <button
-            className={`${TEXT_COLORS[7]} underline`}
+            className={`${TEXT_COLORS[8]} underline`}
             onClick={() => {
               window.location.href = "https://pocketyacsa.shop/logout";
             }}

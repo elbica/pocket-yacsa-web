@@ -127,6 +127,7 @@ export interface DetectionLogRes {
    * @memberof DetectionLogRes
    */
   createdAt: string;
+  favorite: boolean;
 }
 /**
  *
