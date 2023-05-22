@@ -28,7 +28,7 @@ api.interceptors.response.use(
   (data) => data.data,
   (err) => {
     if (!axios.isAxiosError(err)) throw new Error("not axios err");
-    if (err.response?.status === 401) {
+    if (err.response?.data.httpStatus === "UNAUTHORIZED") {
       window.location.href = "/";
     }
     return Promise.reject(err);
