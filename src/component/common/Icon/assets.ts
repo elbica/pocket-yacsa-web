@@ -13,3 +13,4 @@ export { default as searchDelete } from "/public/icon/searchDelete.svg";
 export { default as sharp } from "/public/icon/sharp.svg";
 export { default as smallSearch } from "/public/icon/smallSearch.svg";
 export { default as star } from "/public/icon/star.svg";
+export { default as trash } from "/public/icon/trash.svg";

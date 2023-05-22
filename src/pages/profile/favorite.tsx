@@ -1,7 +1,9 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import type { InfiniteData } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import type { PropsWithChildren } from "react";
 import React, { useState } from "react";
 
+import { Icon } from "@/component/common/Icon";
 import { BackButton, BottomNavigation } from "@/component/common/Navigation";
 import { Tab } from "@/component/common/Tab";
 import { InfiniteList } from "@/component/result";
@@ -49,19 +51,28 @@ const SelectButtons = ({ onClick }: { onClick: (mode: number) => void }) => {
   );
 };
 const FavoritePage = () => {
+  const [isDeleteMode, setIsDeleteMode] = useState(false);
   return (
     <>
       <div className="px-20">
         <BackButton className="absolute left-24 top-24" />
-
+        <button className="absolute right-24 top-30" onClick={() => setIsDeleteMode(!isDeleteMode)}>
+          {isDeleteMode ? (
+            <span className="text-16-medium-140 text-primary-light-0 dark:text-primary-dark-1">
+              완료
+            </span>
+          ) : (
+            <Icon height={24} name="trash" width={24} />
+          )}
+        </button>
         <Tab className="items-center pt-20">
           <Tab.Group>
             <Tab.Label>촬영기록</Tab.Label>
             <Tab.Label>내 서랍</Tab.Label>
           </Tab.Group>
           <Tab.Panel>
-            <HistoryList />
-            <FavoriteList />
+            <HistoryList isDeleteMode={isDeleteMode} />
+            <FavoriteList isDeleteMode={isDeleteMode} />
           </Tab.Panel>
         </Tab>
       </div>
@@ -70,8 +81,9 @@ const FavoritePage = () => {
   );
 };
 
-const FavoriteList = (props: PropsWithChildren) => {
+const FavoriteList = (props: PropsWithChildren<{ isDeleteMode: boolean }>) => {
   const [order, setOrder] = useState("DESCENDING");
+  const client = useQueryClient();
   const { data, isError, fetchNextPage } = useInfiniteQuery(
     ["favorites", order],
     ({ pageParam = 0 }) =>
@@ -82,6 +94,23 @@ const FavoriteList = (props: PropsWithChildren) => {
       },
     },
   );
+  const deleteMutation = useMutation((id: number) => api.delete(`/favorites?medicineId=${id}`), {
+    onSuccess: (d, variables) => {
+      client.setQueryData<InfiniteData<FavoritePageRes>>(["favorites", order], (data) => {
+        const newData = structuredClone(data);
+        if (!newData) return data;
+        newData.pages = newData?.pages.map((page) => ({
+          ...page,
+          favorites: page.favorites.filter((d) => d.id !== variables),
+        }));
+
+        if (newData.pages[0].total) newData.pages[0].total--;
+
+        return newData;
+      });
+    },
+  });
+
   const infiniteResultItems =
     data?.pages.flatMap((page) =>
       page.favorites?.map((logs) => ({
@@ -89,10 +118,11 @@ const FavoriteList = (props: PropsWithChildren) => {
         company: logs.medicineCompany,
         image: logs.medicineImage,
         name: logs.medicineName,
+        isDelete: props.isDeleteMode,
+        onDelete: deleteMutation.mutate,
         date: logs.createdAt.split("T")[0].replaceAll("-", "."),
       })),
     ) || [];
-
   return (
     <Tab.Content {...props}>
       {isError ? (
@@ -117,7 +147,7 @@ const FavoriteList = (props: PropsWithChildren) => {
   );
 };
 
-const HistoryList = (props: PropsWithChildren) => {
+const HistoryList = (props: PropsWithChildren<{ isDeleteMode: boolean }>) => {
   const [order, setOrder] = useState("DESCENDING");
   const { data, isError, fetchNextPage } = useInfiniteQuery(
     ["detection-logs", order],
@@ -129,13 +159,34 @@ const HistoryList = (props: PropsWithChildren) => {
       },
     },
   );
+  const client = useQueryClient();
+
+  const deleteMutation = useMutation((id: number) => api.delete(`/detection-logs?id=${id}`), {
+    onSuccess: (d, variables) => {
+      client.setQueryData<InfiniteData<DetectionLogPageRes>>(["detection-logs", order], (data) => {
+        const newData = structuredClone(data);
+        if (!newData) return data;
+        newData.pages = newData?.pages.map((page) => ({
+          ...page,
+          detectionLogs: page.detectionLogs.filter((d) => d.id !== variables),
+        }));
+
+        if (newData.pages[0].total) newData.pages[0].total--;
+
+        return newData;
+      });
+    },
+  });
+
   const infiniteResultItems =
     data?.pages.flatMap((page) =>
       page.detectionLogs.map((logs) => ({
-        id: logs.medicineId,
+        id: logs.id,
         company: logs.medicineCompany,
         image: logs.medicineImage,
         name: logs.medicineName,
+        isDelete: props.isDeleteMode,
+        onDelete: deleteMutation.mutate,
         date: logs.createdAt.split("T")[0].replaceAll("-", "."),
       })),
     ) || [];
