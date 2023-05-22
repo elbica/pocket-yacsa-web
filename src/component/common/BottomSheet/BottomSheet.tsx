@@ -2,7 +2,7 @@ import type { PropsWithChildren, ReactElement } from "react";
 import React, { cloneElement, createContext, useContext, useEffect, useState } from "react";
 import { useSwipeable } from "react-swipeable";
 
-import { BG_COLORS, TEXT_COLORS } from "@/styles";
+import { TEXT_COLORS } from "@/styles";
 
 const SwipeSectionContext = createContext<boolean>(false);
 
@@ -69,15 +69,14 @@ const Bottom = ({ children }: PropsWithChildren) => {
 
 const Title = ({
   children,
-  english,
   company,
   type,
-}: PropsWithChildren<{ english: string; company: string; type: string }>) => {
+}: PropsWithChildren<{ company: string; type: string }>) => {
   return (
     <>
       <span className={`${TEXT_COLORS["9"]} mb-10 text-22-bold-140`}>{children}</span>
       <div className={`mt-8 flex gap-4 text-14-regular-140 ${TEXT_COLORS["7"]}`}>
-        <span>{english}</span>/<span>{company}</span>/<span>{type}</span>
+        <span>{company}</span>/<span>{type}</span>
       </div>
     </>
   );

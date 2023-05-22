@@ -234,55 +234,56 @@ export interface MedicineRes {
    * @type {number}
    * @memberof MedicineRes
    */
-  id?: number;
+  id: number;
   /**
    * 의약품의 code
    * @type {string}
    * @memberof MedicineRes
    */
-  code?: string;
+  code: string;
   /**
    * 의약품의 이름
    * @type {string}
    * @memberof MedicineRes
    */
-  name?: string;
+  name: string;
   /**
    * 의약품의 제약회사
    * @type {string}
    * @memberof MedicineRes
    */
-  company?: string;
+  company: string;
   /**
    * 의약품의 성분
    * @type {Array<string>}
    * @memberof MedicineRes
    */
-  ingredient?: Array<string>;
+  ingredient: Array<string>;
   /**
    * 의약품 이미지 주소
    * @type {string}
    * @memberof MedicineRes
    */
-  image?: string;
+  image: string;
   /**
    * 의약품의 효능
    * @type {string}
    * @memberof MedicineRes
    */
-  effect?: string;
+  effect: string;
   /**
    * 의약품의 용법
    * @type {string}
    * @memberof MedicineRes
    */
-  usages?: string;
+  usages: string;
   /**
    * 의약품의 주의사항
    * @type {string}
    * @memberof MedicineRes
    */
-  precautions?: string;
+  precautions: string;
+  isFavorite: boolean;
 }
 /**
  * 검색결과

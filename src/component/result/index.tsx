@@ -6,17 +6,18 @@ import { useIntersect } from "@/hooks/common";
 import { TEXT_COLORS } from "@/styles";
 
 interface Item {
+  id: number;
   name: string;
   date?: string;
   company: string;
   image: string;
 }
 
-const InfiniteItem = ({ name, date, company, image }: Item) => {
+const InfiniteItem = ({ name, date, company, image, id }: Item) => {
   return (
     <Link
       className="flex flex-col overflow-hidden rounded-8 border border-gray-100 dark:border-ui-dark-3"
-      href="#"
+      href={`/pills/${id}`}
     >
       <div className="relative h-100 w-full">
         <Image fill alt="test" src={image} />
