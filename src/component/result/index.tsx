@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+import { Icon } from "@/component/common/Icon";
 import { useIntersect } from "@/hooks/common";
 import { TEXT_COLORS } from "@/styles";
 
@@ -16,17 +17,25 @@ interface Item {
 const InfiniteItem = ({ name, date, company, image, id }: Item) => {
   return (
     <Link
-      className="flex flex-col overflow-hidden rounded-8 border border-gray-100 dark:border-ui-dark-3"
+      className="relative flex flex-col overflow-hidden rounded-8 border border-gray-100 dark:border-ui-dark-3"
       href={`/pills/${id}`}
     >
       <div className="relative h-100 w-full">
-        <Image fill alt="test" src={image} />
+        <Image fill alt="test" src={image} style={{ objectFit: "cover" }} />
       </div>
       <div className="flex flex-col px-16 py-12">
         <span className={`${TEXT_COLORS["8"]} mb-4 text-14-medium-140 font-bold`}>{name}</span>
         {date && <span className={`${TEXT_COLORS["6"]} text-12-regular-160`}>{date}</span>}
         <span className={`${TEXT_COLORS["7"]} mt-4 text-12-regular-160`}>{company}</span>
       </div>
+      <span className="absolute left-8 top-8">
+        <Icon
+          className=" drop-shadow-[0_4px_8px_rgba(0,0,0,0.2)]"
+          height={24}
+          name="star"
+          width={24}
+        />
+      </span>
     </Link>
   );
 };

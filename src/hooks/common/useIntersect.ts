@@ -9,7 +9,7 @@ export const useIntersect = (onIntersect: IntersectHandler, options?: Intersecti
       if (entry.isIntersecting) {
         setTimeout(() => {
           onIntersect(entry, observer);
-        }, 200);
+        }, 300);
       }
     });
   };

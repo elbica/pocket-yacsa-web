@@ -1,5 +1,5 @@
 import { Content, Header, Item, Root, Trigger } from "@radix-ui/react-accordion";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import type { PropsWithChildren } from "react";
@@ -94,17 +94,40 @@ export default function Pill() {
   const { show } = useToast();
   const { query } = useRouter();
   const id = query.id as string;
+  const queryClient = useQueryClient();
   const { data } = useQuery(["medicines", id], () => api.get<MedicineRes>(`/medicines/id/${id}`), {
     enabled: !!id,
   });
+  const addMutation = useMutation((medicineId: number) =>
+    api.post(`/favorites?medicineId=${medicineId}`),
+  );
+  const deleteMutation = useMutation((medicineId: number) =>
+    api.delete(`/favorites?medicineId=${medicineId}`),
+  );
+
   const handleTogglePill = () => {
-    show("내 서랍에 저장하였습니다");
+    if (!data) return;
+    if (data.favorite) {
+      deleteMutation.mutate(data.id, {
+        onSuccess: () => {
+          queryClient.invalidateQueries(["medicines", id]);
+          show("내 서랍에서 삭제하였습니다");
+        },
+      });
+    } else {
+      addMutation.mutate(data.id, {
+        onSuccess: () => {
+          queryClient.invalidateQueries(["medicines", id]);
+          show("내 서랍에 저장하였습니다");
+        },
+      });
+    }
   };
   if (!data) return null;
   return (
     <>
       <div className="relative h-[32vh]">
-        <Image fill alt="알약사진" src={data.image} />
+        <Image fill alt="알약사진" src={data.image} style={{ objectFit: "cover" }} />
       </div>
 
       <BackButton className="absolute left-24 top-24" />
@@ -157,10 +180,12 @@ export default function Pill() {
         </BottomSheet.Able>
         <BottomSheet.Bottom>
           <button
-            className="h-56 w-full rounded-8 bg-primary-light-0 text-16-bold-140 text-white shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+            className={`h-56 w-full rounded-8 ${
+              !data.favorite ? "bg-primary-light-0 text-white" : "bg-[#eaf0ff] text-primary-light-0"
+            } text-16-bold-140  shadow-[0_4px_12px_rgba(0,0,0,0.15)]`}
             onClick={handleTogglePill}
           >
-            내 서랍에 저장하기
+            {!data.favorite ? "내 서랍에 추가하기" : "내 서랍에 추가완료!"}
           </button>
           <div className="pointer-events-none fixed bottom-66 left-0 right-0 mx-auto h-40 w-full max-w-[44rem] bg-gradient-to-b from-transparent to-white dark:to-ui-dark-1" />
         </BottomSheet.Bottom>

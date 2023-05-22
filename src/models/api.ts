@@ -283,7 +283,7 @@ export interface MedicineRes {
    * @memberof MedicineRes
    */
   precautions: string;
-  isFavorite: boolean;
+  favorite: boolean;
 }
 /**
  * 검색결과

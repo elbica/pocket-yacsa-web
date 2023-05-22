@@ -10,7 +10,7 @@ export const ToastContainer = () => {
   return (
     <Portal id="toast-portal">
       <div
-        className={`pointer-events-none fixed inset-0 h-screen bg-[rgba(23,23,23,0.35)] opacity-0 transition-opacity duration-300 ${
+        className={`pointer-events-none fixed inset-0 h-screen bg-[rgba(23,23,23,0.5)] opacity-0 transition-opacity duration-300 ${
           toasts.length && "pointer-events-auto opacity-100"
         } px-18 ${
           Z_INDEX.toast
