@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { Icon } from "@/component/common/Icon";
 import { SearchItem } from "@/component/search/SearchItem";
@@ -15,7 +15,6 @@ export const SearchResultList = ({ value, onClick }: Prop) => {
     () => api.get<string[]>(`/medicines/search/related?name=${value}`),
     { enabled: !!value },
   );
-  const { mutate } = useMutation((name: string) => api.post(`/medicines/search/logs?name=${name}`));
 
   if (!value || autoCompletedTags?.length === 0) {
     return null;
@@ -29,7 +28,6 @@ export const SearchResultList = ({ value, onClick }: Prop) => {
             startComponent={<Icon className="min-w-24" color="black" name="smallSearch" />}
             tagName={tag}
             onClick={() => {
-              mutate(tag);
               onClick(tag);
             }}
           />
