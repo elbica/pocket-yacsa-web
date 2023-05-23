@@ -35,6 +35,7 @@ const nextConfig = {
     deviceSizes: [512],
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  output: "standalone",
 };
 
 module.exports = nextConfig;
