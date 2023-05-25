@@ -1,10 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import { Icon } from "@/component/common/Icon";
 import { BottomNavigation } from "@/component/common/Navigation";
 import Switch from "@/component/common/Switch";
+import { useToast } from "@/component/common/Toast";
 import type { MyPageRes } from "@/models";
 import { TEXT_COLORS } from "@/styles";
 import { api } from "@/util/axios";
@@ -13,6 +15,14 @@ const ProfilePage = () => {
   const { data } = useQuery({
     queryKey: ["profile"],
     queryFn: () => api.get<MyPageRes>("/my-page/info"),
+  });
+  const router = useRouter();
+
+  const { show } = useToast();
+  const deleteMutation = useMutation(() => api.delete("/members"), {
+    onSuccess: () => {
+      router.replace("/").then(() => show("회원탈퇴가 완료되었습니다"));
+    },
   });
 
   const [defaultDarkMode, setDefaultDarkMode] = useState(false);
@@ -85,7 +95,9 @@ const ProfilePage = () => {
           </li>
         </ul>
         <div className="ml-auto flex w-fit gap-12 px-8 py-10 text-14-regular-140">
-          <button className={`${TEXT_COLORS[6]}`}>회원탈퇴</button>
+          <button className={`${TEXT_COLORS[6]}`} onClick={() => deleteMutation.mutate()}>
+            회원탈퇴
+          </button>
           <button
             className={`${TEXT_COLORS[8]} underline`}
             onClick={() => {

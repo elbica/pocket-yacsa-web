@@ -111,7 +111,7 @@ export default function Pill() {
     );
   return (
     <>
-      <BackButton className="absolute left-24 top-24" />
+      <BackButton className="absolute left-24 top-24 z-[10]" />
       <BottomSheet background={<Background src={data.image} />}>
         <BottomSheet.Able>
           <BottomSheet.Title company={data.company} type="전문의약품">
