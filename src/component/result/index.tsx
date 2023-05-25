@@ -4,7 +4,7 @@ import React from "react";
 
 import { Icon } from "@/component/common/Icon";
 import { useIntersect } from "@/hooks/common";
-import { BG_COLORS, TEXT_COLORS } from "@/styles";
+import { TEXT_COLORS } from "@/styles";
 
 interface Item {
   id: number;
@@ -24,7 +24,7 @@ const InfiniteItem = ({ name, date, company, image, id, favorite, isDelete, onDe
       href={isDelete ? "" : `/pills/${id}`}
     >
       <div className="relative h-100 w-full">
-        <Image fill alt="test" src={image} style={{ objectFit: "cover" }} />
+        <Image fill alt="test" sizes="100px" src={image} style={{ objectFit: "cover" }} />
         {isDelete && (
           <button
             className="absolute inset-0 m-auto flex h-fit w-fit gap-4 rounded-16 bg-ui-light-1 px-16 py-8 shadow-[0_4px_12px_rgba(0,0,0,0.2)] dark:bg-ui-dark-2"
@@ -36,7 +36,9 @@ const InfiniteItem = ({ name, date, company, image, id, favorite, isDelete, onDe
         )}
       </div>
       <div className="flex flex-col px-16 py-12">
-        <span className={`${TEXT_COLORS["8"]} mb-4 text-14-medium-140 font-bold`}>{name}</span>
+        <span className={`${TEXT_COLORS["8"]} mb-4 line-clamp-2 text-14-medium-140 font-bold`}>
+          {name}
+        </span>
         {date && <span className={`${TEXT_COLORS["6"]} text-12-regular-160`}>{date}</span>}
         <span className={`${TEXT_COLORS["7"]} mt-4 text-12-regular-160`}>{company}</span>
       </div>
@@ -66,7 +68,7 @@ export const InfiniteList = ({
 
   return (
     <div
-      className="grid max-h-full shrink-0 grid-cols-2 gap-x-8 gap-y-16 overflow-y-auto pb-16"
+      className="grid auto-rows-max grid-cols-2 gap-x-8 gap-y-16 overflow-y-auto pb-16"
       ref={(e) => {
         const rect = e?.getBoundingClientRect();
         if (!rect || !e) return;

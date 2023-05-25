@@ -112,7 +112,14 @@ export default function Pill() {
   return (
     <>
       <div className="relative h-[32vh]">
-        <Image fill alt="알약사진" src={data.image} style={{ objectFit: "cover" }} />
+        <Image
+          fill
+          priority
+          alt="알약사진"
+          sizes="200px"
+          src={data.image}
+          style={{ objectFit: "cover" }}
+        />
       </div>
       <BackButton className="absolute left-24 top-24" />
       <BottomSheet>
