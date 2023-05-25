@@ -43,6 +43,12 @@ const Section = ({ title, children, icon }: PropsWithChildren<{ title: string; i
   );
 };
 
+const LoadingSpinner = () => {
+  return (
+    <div className="m-auto h-60 w-60 animate-spin rounded-full border-8 border-[#f3f3f3] border-t-[#5086ff]"></div>
+  );
+};
+
 const getMatchedText = (text: string) =>
   /<body>(?<data>(.|\n)*)<\/body>/g
     .exec(text)
@@ -97,13 +103,17 @@ export default function Pill() {
       });
     }
   };
-  if (!data) return null;
+  if (!data)
+    return (
+      <div className="flex items-center justify-center" style={{ height: "100dvh" }}>
+        <LoadingSpinner />;
+      </div>
+    );
   return (
     <>
       <div className="relative h-[32vh]">
         <Image fill alt="알약사진" src={data.image} style={{ objectFit: "cover" }} />
       </div>
-
       <BackButton className="absolute left-24 top-24" />
       <BottomSheet>
         <BottomSheet.Able>
