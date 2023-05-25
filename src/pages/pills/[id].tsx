@@ -1,11 +1,11 @@
 import { Content, Header, Item, Root, Trigger } from "@radix-ui/react-accordion";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import type { PropsWithChildren } from "react";
 import React from "react";
 
 import { BottomSheet } from "@/component/common/BottomSheet";
+import { Background } from "@/component/common/BottomSheet/Background";
 import { Icon } from "@/component/common/Icon";
 import { BackButton } from "@/component/common/Navigation";
 import { useToast } from "@/component/common/Toast";
@@ -111,23 +111,12 @@ export default function Pill() {
     );
   return (
     <>
-      <div className="relative h-[32vh]">
-        <Image
-          fill
-          priority
-          alt="알약사진"
-          sizes="200px"
-          src={data.image}
-          style={{ objectFit: "cover" }}
-        />
-      </div>
       <BackButton className="absolute left-24 top-24" />
-      <BottomSheet>
+      <BottomSheet background={<Background src={data.image} />}>
         <BottomSheet.Able>
           <BottomSheet.Title company={data.company} type="전문의약품">
             {data.name}
           </BottomSheet.Title>
-          {/*<BottomSheet.Description>{data.effect}</BottomSheet.Description>*/}
 
           <Root
             collapsible
