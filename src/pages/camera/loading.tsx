@@ -11,7 +11,7 @@ const CameraPage = () => {
       >
         <Icon name="back" />
       </button>
-      <div className="flex h-screen flex-col place-content-center pb-80">
+      <div className="flex flex-col place-content-center pb-80" style={{ height: "100dvh" }}>
         <div className="flex flex-col items-center justify-center">
           <Icon height={120} name="logo" width={120} />
           <h1 className={`pt-40 text-22-bold-140 ${TEXT_COLORS[9]}`}>알약을 찾고 있어요</h1>

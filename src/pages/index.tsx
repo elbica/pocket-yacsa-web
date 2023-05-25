@@ -5,7 +5,10 @@ import { Icon } from "@/component/common/Icon";
 export default function Home() {
   return (
     <>
-      <div className="relative z-10 flex h-screen flex-col items-center justify-around px-20  py-80">
+      <div
+        className="relative z-10 flex flex-col items-center justify-around px-20  py-80"
+        style={{ height: "100dvh" }}
+      >
         <Image alt="알약이미지" height={277} src="/picture/3d_logo.png" width={305} />
         <div className="flex flex-col gap-20 pb-20">
           <h1 className="text-center text-28-bold-140 text-white">
@@ -21,7 +24,7 @@ export default function Home() {
         <button
           className="flex h-56 w-full items-center justify-center gap-8 rounded-8 bg-white px-14 shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
           onClick={() => {
-            window.location.href = "https://pocketyacsa.shop/oauth2/login/google";
+            window.location.href = "https://pocketyacsa.shop/api/oauth2/login/google";
           }}
         >
           <Icon name="google" />

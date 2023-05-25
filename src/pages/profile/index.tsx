@@ -32,7 +32,10 @@ const ProfilePage = () => {
 
   return (
     <>
-      <div className="relative flex h-screen flex-col justify-around px-20 pb-80 pt-20">
+      <div
+        className="relative flex flex-col justify-around px-20 pb-80 pt-20"
+        style={{ height: "100dvh" }}
+      >
         <img
           alt="백그라운드 이미지"
           className="absolute left-0 right-0 top-0 z-0 w-full"
@@ -86,7 +89,7 @@ const ProfilePage = () => {
           <button
             className={`${TEXT_COLORS[8]} underline`}
             onClick={() => {
-              window.location.href = "https://pocketyacsa.shop/logout";
+              window.location.href = "https://pocketyacsa.shop/api/logout";
             }}
           >
             로그아웃
