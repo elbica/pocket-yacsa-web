@@ -21,7 +21,7 @@ interface CustomInstance extends AxiosInstance {
   ): Promise<R>;
 }
 export const api: CustomInstance = axios.create({
-  baseURL: "https://pocketyacsa.shop",
+  baseURL: "https://pocketyacsa.shop/api",
   withCredentials: true,
 });
 api.interceptors.response.use(

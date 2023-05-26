@@ -29,28 +29,25 @@ function SwipeSectionRoot({
       {!isFull ? (
         <section
           {...handlers}
-          className={`fixed bottom-0 flex w-full max-w-[44rem] flex-col justify-between rounded-t-24 bg-white px-20 py-12 shadow-[0_1px_20px_rgba(0,0,0,0.1)] transition-[height] dark:bg-ui-dark-1 ${
+          className={`fixed bottom-0 flex w-full max-w-[44rem] flex-col rounded-t-20 bg-white px-20 pb-12 shadow-[0_1px_20px_rgba(0,0,0,0.1)] transition-[height] dark:bg-ui-dark-1 ${
             open ? "h-[98vh] overflow-y-auto" : "h-[70vh]"
           } `}
         >
+          <div
+            className="sticky top-0 mx-auto flex w-full shrink-0 justify-center bg-white py-8"
+            draggable={false}
+          >
+            <div className="h-4 w-80 rounded-13 bg-ui-light-2 dark:bg-ui-dark-3" />
+          </div>
           {children}
         </section>
       ) : null}
-      <div
-        className={`pointer-event-none absolute flex w-full items-center justify-center rounded-t-24 bg-white py-8 transition-[top] dark:bg-ui-dark-1 ${
-          open ? "top-[2vh]" : "top-[30vh]"
-        }`}
-      >
-        <span
-          className={`left-0 right-0 m-auto block h-4 w-80 rounded-13 bg-ui-light-2 dark:bg-ui-dark-3 `}
-        />
-      </div>
     </SwipeSectionContext.Provider>
   );
 }
 
 const Able = ({ children }: PropsWithChildren) => {
-  return <div className="mt-24 w-full pb-80">{children}</div>;
+  return <div className="mt-16 w-full pb-80">{children}</div>;
 };
 
 const Bottom = ({ children }: PropsWithChildren) => {

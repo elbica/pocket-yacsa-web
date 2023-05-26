@@ -1,11 +1,11 @@
 import { Content, Header, Item, Root, Trigger } from "@radix-ui/react-accordion";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import type { PropsWithChildren } from "react";
 import React from "react";
 
 import { BottomSheet } from "@/component/common/BottomSheet";
+import { Background } from "@/component/common/BottomSheet/Background";
 import { Icon } from "@/component/common/Icon";
 import { BackButton } from "@/component/common/Navigation";
 import { useToast } from "@/component/common/Toast";
@@ -40,6 +40,12 @@ const Section = ({ title, children, icon }: PropsWithChildren<{ title: string; i
         <div className="h-28" />
       </Content>
     </Item>
+  );
+};
+
+const LoadingSpinner = () => {
+  return (
+    <div className="m-auto h-60 w-60 animate-spin rounded-full border-8 border-[#f3f3f3] border-t-[#5086ff]"></div>
   );
 };
 
@@ -97,20 +103,20 @@ export default function Pill() {
       });
     }
   };
-  if (!data) return null;
+  if (!data)
+    return (
+      <div className="flex items-center justify-center" style={{ height: "100dvh" }}>
+        <LoadingSpinner />;
+      </div>
+    );
   return (
     <>
-      <div className="relative h-[32vh]">
-        <Image fill alt="알약사진" src={data.image} style={{ objectFit: "cover" }} />
-      </div>
-
-      <BackButton className="absolute left-24 top-24" />
-      <BottomSheet>
+      <BackButton className="absolute left-24 top-24 z-[10]" />
+      <BottomSheet background={<Background src={data.image} />}>
         <BottomSheet.Able>
           <BottomSheet.Title company={data.company} type="전문의약품">
             {data.name}
           </BottomSheet.Title>
-          {/*<BottomSheet.Description>{data.effect}</BottomSheet.Description>*/}
 
           <Root
             collapsible
