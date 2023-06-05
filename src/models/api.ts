@@ -387,6 +387,7 @@ export interface MyPageRes {
    * @memberof MyPageRes
    */
   favoriteCount?: number;
+  picture?: string;
 }
 
 /**

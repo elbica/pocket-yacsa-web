@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -52,21 +53,22 @@ const ProfilePage = () => {
           src="/picture/profile_background.png"
         />
         <section className="z-1 relative flex flex-col items-center">
-          <div className="h-100 w-100 rounded-50 bg-primary-light-2" />
+          <div className="relative h-100 w-100 overflow-hidden rounded-50 bg-primary-light-2">
+            {data?.picture && <Image fill alt="profile" src={data.picture} />}
+          </div>
           <h1 className={`pt-16 text-22-medium-140 ${TEXT_COLORS[8]}`}>
-            <b className={`font-bold ${TEXT_COLORS[9]}`}>{data?.memberName ?? "OOO"}님</b>{" "}
-            안녕하세요!
+            <b className={`font-bold ${TEXT_COLORS[9]}`}>{data?.memberName ?? ""}님</b> 안녕하세요!
           </h1>
           <Link className="block flex justify-center pt-24" href="/profile/favorite">
             <div className="flex w-[12rem] flex-col items-center gap-4 border-r border-[#eaebf1] pr-20 dark:border-ui-dark-3">
               <b className={`text-[3.2rem] font-bold leading-[4.4rem] ${TEXT_COLORS[9]}`}>
-                {data?.detectionLogCount ?? "--"}
+                {data?.detectionLogCount ?? <>&nbsp;</>}
               </b>
               <span className={`${TEXT_COLORS[8]} text-16-regular-140`}>촬영기록</span>
             </div>
             <div className="flex w-[12rem] flex-col items-center gap-4 pl-20">
               <b className={`text-[3.2rem] font-bold leading-[4.4rem] ${TEXT_COLORS[9]}`}>
-                {data?.favoriteCount ?? "--"}
+                {data?.favoriteCount ?? <>&nbsp;</>}
               </b>
               <span className={`${TEXT_COLORS[8]} text-16-regular-140`}>내 서랍</span>
             </div>
