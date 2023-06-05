@@ -1,5 +1,13 @@
+const IS_DEV = process.env.NODE_ENV === "development";
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withPWA = require("next-pwa")({
+  dest: "public",
+  disable: IS_DEV,
+});
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withPWA({
   reactStrictMode: true,
   webpack: (config) => {
     config.module = config.module || {};
@@ -36,6 +44,6 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   output: "standalone",
-};
+});
 
 module.exports = nextConfig;
