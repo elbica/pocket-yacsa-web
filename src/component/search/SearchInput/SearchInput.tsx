@@ -45,7 +45,6 @@ export const SearchInput = ({ onReset, onSearchByKeyWord, value, ...rest }: Prop
             {value && (
               <Icon
                 className="absolute right-54 cursor-pointer"
-                color="black"
                 height={24}
                 name="searchDelete"
                 width={24}
