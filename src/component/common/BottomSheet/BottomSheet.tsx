@@ -34,7 +34,7 @@ function SwipeSectionRoot({
           } `}
         >
           <div
-            className="sticky top-0 mx-auto flex w-full shrink-0 justify-center bg-white py-8"
+            className="sticky top-0 mx-auto flex w-full shrink-0 justify-center bg-white  py-8 dark:bg-ui-dark-1"
             draggable={false}
           >
             <div className="h-4 w-80 rounded-13 bg-ui-light-2 dark:bg-ui-dark-3" />

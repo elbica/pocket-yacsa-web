@@ -9,7 +9,7 @@ export const Toast = ({ message, id, color = "black", visible, ...rest }: Props)
         !visible && "opacity-0"
       } transition-opacity duration-300 ${BG_COLORS["1"]} ${
         TEXT_COLORS["9"]
-      } flex h-56 w-full items-center justify-center rounded-8 bg-white text-14-medium-140`}
+      } flex h-56 w-full items-center justify-center rounded-8 text-14-medium-140`}
       {...rest}
     >
       {typeof message === "function" ? message(id) : message}
