@@ -8,6 +8,7 @@ import { SearchRecent } from "@/component/search/SearchRecent";
 import { SearchResultList } from "@/component/search/SearchResult";
 import { useDebounce, useInput } from "@/hooks/common";
 import type { MedicineSearchPageRes } from "@/models";
+import { TEXT_COLORS } from "@/styles";
 import { api } from "@/util/axios";
 
 interface RecentSearch {
@@ -46,7 +47,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="px-20 pt-16">
+      <div className="flex h-[calc(100dvh-8rem)] flex-col px-20 pt-16">
         <SearchInput
           {...inputProps}
           placeholder="알약을 입력해 주세요."
@@ -75,7 +76,7 @@ export default function Home() {
 }
 
 const SearchInfiniteResult = ({ value }: { value: string }) => {
-  const { data, fetchNextPage } = useInfiniteQuery(
+  const { data, fetchNextPage, isError } = useInfiniteQuery(
     ["searchMedicine", value],
     ({ pageParam = 0 }) =>
       api.get<MedicineSearchPageRes>(`/medicines/search/page?name=${value}&page=${pageParam + 1}`),
@@ -85,11 +86,13 @@ const SearchInfiniteResult = ({ value }: { value: string }) => {
       },
     },
   );
-  const infiniteResultItems = data?.pages.flatMap((page) => page.medicineSearchList) || [];
+  if (isError)
+    return (
+      <p className={`flex grow items-center justify-center text-16-medium-140 ${TEXT_COLORS["7"]}`}>
+        검색 결과가 없습니다. 😥
+      </p>
+    );
 
-  return (
-    <>
-      <InfiniteList items={infiniteResultItems} onRequestAppend={() => fetchNextPage()} />
-    </>
-  );
+  const infiniteResultItems = data?.pages.flatMap((page) => page.medicineSearchList) || [];
+  return <InfiniteList items={infiniteResultItems} onRequestAppend={fetchNextPage} />;
 };
