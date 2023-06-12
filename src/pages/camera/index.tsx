@@ -54,16 +54,20 @@ const CameraPage = () => {
           <div className="flex w-fit flex-col items-center gap-2">
             <Icon color="primary" name="camera" />
             <span className={`text-12-regular-160 ${TEXT_COLORS[7]}`}>
-              카메라로 사진을 찍어주세요
+              카메라로 촬영을 시작합니다.
             </span>
           </div>
         </button>
-        <button className="flex grow items-center py-24 pb-80 ">
-          <label className="w-full rounded-8 bg-primary-light-2 py-17 text-center text-16-bold-140 text-primary-light-0 active:bg-primary-dark-1 ">
+        <div className="flex grow items-center py-24 pb-80 ">
+          <label
+            className="w-full rounded-8 bg-primary-light-2 py-17 text-center text-16-bold-140 text-primary-light-0 active:bg-primary-dark-1 "
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+            role="button"
+          >
             갤러리에서 가져오기
             <input hidden type="file" onChange={handleFileChange} />
           </label>
-        </button>
+        </div>
       </div>
       <BottomNavigation />
     </>

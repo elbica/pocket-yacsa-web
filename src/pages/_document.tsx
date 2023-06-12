@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="ko">
       <Head>
         <link href="/favicon.ico" rel="shortcut icon" />
         <link href="/manifest.json" rel="manifest" />
